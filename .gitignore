@@ -1,0 +1,4 @@
+# .gitignore 示例
+config.py
+*.key
+*.pem
