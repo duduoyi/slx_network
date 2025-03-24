@@ -56,7 +56,8 @@ def register_callbacks():
             hash_password=generate_password_hash(set_password),
             unit=user_unit,
             section=user_section,
-            user_type=user_type
+            user_type=user_type,
+            register_type='账号'
         )
 
         mysqldb.session.add(new_user)

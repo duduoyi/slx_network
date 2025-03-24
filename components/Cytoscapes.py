@@ -20,7 +20,7 @@ def social_graph():
                         'text-valign': 'center',
                         'text-halign': 'center',
                         'color': 'black',
-                        'font-size': '14px',
+                        'fontSize': '14px',
                         'width': 'data(width)',  # 根据度数设置宽度
                         'height': 'data(height), 50px',  # 根据度数设置高度
                         'background-color': 'data(background-color)',

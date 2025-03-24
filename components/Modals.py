@@ -2,6 +2,7 @@ import dash
 from dash import html
 import dash_bootstrap_components as dbc
 from components import Forms
+from config import Config
 
 
 def user_login_modal():
@@ -68,6 +69,6 @@ def local_contacts_modal():
 if __name__ == "__main__":
     app = dash.Dash(__name__, external_stylesheets=[dbc.themes.LITERA])
     app.layout = html.Div([
-        school_contacts_modal(),
+        local_contacts_modal(),
     ])
     app.run_server(debug=True)

@@ -63,7 +63,7 @@ def user_login_form():
                         html.Div([
                             dbc.Button(
                                 "微信扫码登录",
-                                id="weixin-login-btn",
+                                id="wechat-login-btn",
                                 style={
                                     "border": "none",
                                     "background": "none",

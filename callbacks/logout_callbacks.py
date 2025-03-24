@@ -2,6 +2,7 @@ import dash
 from dash import Input, Output
 from flask_login import logout_user, current_user
 from dash.exceptions import PreventUpdate
+import logging
 
 
 def logout_callbacks():
@@ -15,7 +16,7 @@ def logout_callbacks():
             raise PreventUpdate  # 如果没有点击按钮，避免不必要的更新
 
         if n_clicks > 0:
-            print("点击登出")
+            logging.info("点击登出")
             logout_user()  # 使用flask-login的登出方法
-            print("登出成功", current_user.is_authenticated)
+            logging.info("登出成功", current_user.is_authenticated)
             return "/dash/home"

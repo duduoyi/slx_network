@@ -1,7 +1,8 @@
 import dash
 from dash import html, dcc
 from components import Forms
-from callbacks import login_callbacks, password_callbacks
+from callbacks import login_callbacks, password_callbacks, wechat_callbacks
+
 
 dash.register_page(__name__, path="/login")  # 使用 `dash.pages`
 
@@ -9,7 +10,8 @@ dash.register_page(__name__, path="/login")  # 使用 `dash.pages`
 # 登录页
 layout = html.Div([
         Forms.user_login_form(),
-        dcc.Location(id='login-url', refresh=True),
+        dcc.Location(id='login-url', refresh=True),  # 用于处理页面跳转
+        dcc.Location(id='wechat-url', refresh=True),  # 用于处理页面跳转
     ], style={
         'display': 'flex',           # 使用Flexbox布局
         'justifyContent': 'center',  # 水平居中
@@ -21,3 +23,4 @@ layout = html.Div([
 
 login_callbacks.login_callbacks()
 password_callbacks.login_password_callbacks()
+wechat_callbacks.wechat_url_callbacks()
