@@ -1,21 +1,33 @@
-from flask import Flask, request, redirect, session
+from flask import Flask, request, redirect, session, make_response
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, UserMixin, login_user, current_user
+from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user
+from flask_cors import CORS
 from config import Config
 import requests
 import logging
+import jwt
+from datetime import datetime, timedelta
+import json
+
+
+logger = logging.getLogger(__name__)
 
 
 # ========== 🚀 创建 Flask 应用 ==========
 # 创建 共享 Flask 服务器
 flask_server = Flask(__name__)
 
-
 # 确保 Secret Key 正确设置，用于加密 session
-flask_server.config['SECRET_KEY'] = 'your_secret_key'
+flask_server.config['SECRET_KEY'] = Config.FLASK_SECRET_KEY
 flask_server.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{Config.MYSQL_USER}:{Config.MYSQL_PASSWORD}@{Config.MYSQL_HOST}:{Config.MYSQL_PORT}/{Config.MYSQL_DB_WEB}"
 flask_server.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+flask_server.config['SESSION_COOKIE_SECURE'] = True  # 如果使用 HTTPS，设置为 True
+flask_server.config['SESSION_COOKIE_SAMESITE'] = 'None'  # 允许跨域携带 Cookie
+flask_server.config['SESSION_COOKIE_DOMAIN'] = '.qiuchengtong.cn'  # 确保跨子域可以共享 cookie
 
+
+# 配置CORS，允许跨域请求并支持携带Cookie
+CORS(flask_server, supports_credentials=True)
 
 # 配置 Flask-Login
 mysqldb = SQLAlchemy(flask_server)
@@ -59,105 +71,148 @@ class User(UserMixin, mysqldb.Model):
 # Flask-Login 用户加载函数
 @login_manager.user_loader
 def load_user(user_id):
+    logger.info(f"加载用户 ID: {user_id}")
     return User.query.get(int(user_id))
 
 
-@flask_server.route('/dash/')
-def home():
-    return redirect('/dash/home')
-
-
-@flask_server.route('/dash/wechat/callback')
+@flask_server.route('/wechat/callback')
 def wechat_callback():
+    send_state = session.get('state')
+    logger.info(f'发送的 state: {send_state}')
+    logger.info("微信授权，返回code和state")
     # 获取微信返回的授权码（code）和防止CSRF攻击的state参数
     code = request.args.get('code')
-    logging.info(f'获取微信用户code:{code}')
+    logger.info(f'获取微信用户 code: {code}')
     state = request.args.get('state')
-    logging.info(f'获取微信用户state:{state}')
+    logger.info(f'获取微信用户 state: {state}')
 
     # 防止 CSRF 攻击，验证 state
-    if not code or state != session.get('state'):
-        logging.error('验证 state 失败')
+    if not code or state != send_state:
+        logger.error('验证 state 失败')
         return 'Authorization failed', 400
-
-    session.pop('state', None)
 
     try:
         # 使用授权码（code）请求 access_token
         access_token_url = f'https://api.weixin.qq.com/sns/oauth2/access_token?appid={APPID}&secret={WECHAT_SECRET}&code={code}&grant_type=authorization_code'
-        logging.info(f'请求用户授权 access_token_url:{access_token_url}')
+        logger.info(f'请求用户授权 access_token_url: {access_token_url}')
         access_token_response = requests.get(access_token_url)
-        logging.info(f'用户授权响应 access_token_response:{access_token_response}')
+        logger.info(f'用户授权响应 access_token_response: {access_token_response}')
         access_token_data = access_token_response.json()
-        logging.info(f'获取用户access_token及openid:{access_token_data}')
+        logger.info(f'获取用户 access_token 及 openid: {access_token_data}')
 
         # 处理微信 API 错误
         if access_token_response.status_code != 200 or 'access_token' not in access_token_data:
-            logging.error(f"Failed to get access_token: {access_token_data}")
-            return 'Failed to get access token or openid', 400
+            logger.error(f"获取 access_token 失败: {access_token_data}")
+            return '获取 access_token 或 openid 失败', 400
 
         access_token = access_token_data.get('access_token')
-        logging.info(f'用户access_token:{access_token}')
+        logger.info(f'用户 access_token: {access_token}')
         openid = access_token_data.get('openid')
-        logging.info(f'用户openid:{openid}')
+        logger.info(f'用户 openid: {openid}')
         refresh_token = access_token_data.get('refresh_token')
-        logging.info(f'用户refresh_token:{refresh_token}')
+        logger.info(f'用户 refresh_token: {refresh_token}')
 
         if not access_token or not openid:
-            logging.error(f"Failed to get access token or openid: 400")
-            return 'Failed to get access token or openid', 400
+            logger.error(f"缺失 access token 或 openid")
+            return '缺失 access token 或 openid', 400
 
         # 校验 access_token 是否有效
         valid_url = f'https://api.weixin.qq.com/sns/auth?access_token={access_token}&openid={openid}'
         valid_token_response = requests.get(valid_url)
         valid_token_data = valid_token_response.json()
-
         valid_status = valid_token_data.get('errmsg')
-        logging.info(f'获取验证状态 valid_status:{valid_status}')
+        logger.info(f'获取验证状态 valid_status:{valid_status}')
+
+        # 获取用户信息
+        user_info_url = f'https://api.weixin.qq.com/sns/userinfo?access_token={access_token}&openid={openid}'
+        user_info_response = requests.get(user_info_url)
+
+        # 使用 response.content 获取字节流，然后解码为字符串
+        user_info_content = user_info_response.content.decode('utf-8')
+
+        # 使用 json.loads() 解析 JSON 字符串
+        try:
+            user_info = json.loads(user_info_content)
+        except json.JSONDecodeError as e:
+            logger.error(f"解析JSON失败: {e}")
+            return '解析JSON失败', 500
+
+        logger.info(f'获取用户信息 user_info:{user_info}')
+
+        username = user_info.get('nickname')
+        headimgurl = user_info.get('headimgurl')
+        unionid = user_info.get('unionid')
 
         # 若 access_token 有效
         if valid_status == 'ok':
+
+            # 生成JWT，并将openid存储到cookie中
+            payload = {
+                "iss": "Socialnet",
+                "iat": datetime.utcnow(),
+                "exp": datetime.utcnow() + timedelta(days=7),  # 7 天有效期
+                "id": openid,
+                "username": username,
+                "headimgurl": headimgurl,
+                "unionid": unionid,
+            }
+            jwt_token = jwt.encode(payload, Config.JWT_SECRET, algorithm='HS256')
+            response = make_response(redirect('/'))  # 登录成功后重定向到主页面
+            response.set_cookie('share_auth_token', jwt_token, domain='.qiuchengtong.cn', path='/', secure=True,
+                                httponly=True, samesite='None', max_age=60 * 60 * 24 * 7)
+
             # 判断用户是否存在
             user = User.query.filter_by(open_id=openid).first()  # 根据 openid 查找用户
-            logging.info(f'判断用户存在: {user}')
+            logger.info(f'判断微信用户是否存在: {user}')
 
             if not user:
-                logging.info('用户不存在，自动注册用户')
-                user_info_url = f'https://api.weixin.qq.com/sns/userinfo?access_token={access_token}&openid={openid}'
-                user_info_response = requests.get(user_info_url)
-                user_info = user_info_response.json()
-                logging.info(f'获取用户信息 user_info:{user_info}')
+                logger.info('微信用户不存在，自动注册用户')
                 user = User(
                     open_id=openid,
-                    username=user_info.get('nickname'),
+                    username=username,
                     register_type='微信'
                 )
                 try:
+                    logger.info("注册微信用户: ", user_info.get('nickname'))
                     mysqldb.session.add(user)
                     mysqldb.session.commit()
                 except Exception as db_error:
-                    logging.error(f"Database error: {db_error}")
-                    return 'Database error', 500
+                    logger.error(f"MySQL数据库错误: {db_error}")
+                    return 'MySQL数据库错误', 500
+            else:
+                # 使用 Flask-Login 登录用户
+                login_user(user, remember=True)  # 登录用户（此时 user 是 User 模型的实例）, 使用remember参数来设置记住我功能
+                logger.info(f'微信用户登录成功 {current_user.is_authenticated}')
 
-            # 使用 Flask-Login 登录用户
-            login_user(user)  # 登录用户（此时 user 是 User 模型的实例）
-            logging.info(f'微信用户登录{current_user.is_authenticated}')
-            return redirect('/dash/home')  # 登录成功后重定向到主页面
+            return response
 
         else:
-            logging.info(f"Invalid access_token: {valid_token_data}")
-            return 'Failed to validate access token', 400
-
-            # # access_token 无效，使用 refresh_token 刷新
-            # refresh_token_url = f'https://api.weixin.qq.com/sns/oauth2/refresh_token?appid={APPID}&grant_type=refresh_token&refresh_token={refresh_token}'
-            # refresh_token_response = requests.get(refresh_token_url)
-            # refresh_token_data = refresh_token_response.json()
-            # access_token = refresh_token_data.get('access_token')
-            # openid = refresh_token_data.get('openid')
-            # refresh_token = refresh_token_data.get('refresh_token')
-            # 重新校验新的 access_token
-            # return redirect('/wechat/callback')
+            logger.info(f"access_token 失效: {valid_token_data}")
+            return 'access_token 过期', 400
 
     except Exception as e:
-        logging.error(f"Error during WeChat OAuth process: {e}")
+        logging.error(f"微信登陆错误: {e}")
         return f'Internal Server Error: {str(e)}', 500
+    finally:
+        session.pop('state', None)
+
+
+@flask_server.route('/logout')
+def flask_logout():
+    logger.info("Flask 登出路由触发")
+
+    # 使用 flask-login 的登出方法
+    logout_user()  # 使用flask-login的登出方法
+    logger.info(f"登出成功, 当前用户认证: {current_user.is_authenticated}")
+
+    # 创建响应对象
+    response = make_response(redirect('/'))  # 重定向到主页面
+    logger.info(f"创建响应对象: {response.status_code}")
+    # 删除 'share_auth_token' cookie，设置为过期
+    expires = datetime.utcnow() - timedelta(days=1)  # 昨天的时间，使其过期
+    logger.info(f"设置过期时间：{expires}")
+    logger.info(f"设置 JWT cookie 过期")
+    response.set_cookie('share_auth_token', '', expires=expires, path='/', domain='.qiuchengtong.cn', secure=True,
+                        httponly=True, samesite='None')
+
+    return response

@@ -1,0 +1,636 @@
+2025-04-01 10:14:37,116 - INFO - 初始化 Dash 应用
+2025-04-01 10:14:37,135 - INFO - 加载主页布局
+2025-04-01 10:14:37,146 - INFO - 加载用户登录界面
+2025-04-01 10:14:37,158 - INFO - 加载用户注册表单
+2025-04-01 10:14:37,158 - INFO - 加载用户注册页
+2025-04-01 10:14:38,175 - DEBUG - [#0000]  _: <POOL> created, direct address IPv4Address(('101.132.47.200', 7687))
+2025-04-01 10:14:38,175 - INFO - 查询高校节点: 
+        MATCH (a:`高校人员`)
+        WHERE a.unit = '清华大学' AND a.section = '计算机科学与技术系' and a.coreValue > 5
+        return 
+            id(a) as id, 
+            a.name AS name, 
+            a.unit as unit, 
+            a.section as section,
+            a.post as post,
+            a.weight as weight,
+            a.coreValue as coreValue,
+            a.communityId as communityId
+    
+2025-04-01 10:14:38,175 - DEBUG - [#0000]  _: <WORKSPACE> routing towards fixed database: None
+2025-04-01 10:14:38,175 - DEBUG - [#0000]  _: <WORKSPACE> pinning database: None
+2025-04-01 10:14:38,175 - DEBUG - [#0000]  _: <POOL> acquire direct connection, access_mode='WRITE', database=AcquisitionDatabase(name=None, guessed=False)
+2025-04-01 10:14:38,175 - DEBUG - [#0000]  _: <POOL> trying to hand out new connection
+2025-04-01 10:14:38,175 - DEBUG - [#0000]  _: <RESOLVE> in: 101.132.47.200:7687
+2025-04-01 10:14:38,175 - DEBUG - [#0000]  _: <RESOLVE> dns resolver out: 101.132.47.200:7687
+2025-04-01 10:14:38,177 - DEBUG - [#0000]  C: <OPEN> 101.132.47.200:7687
+2025-04-01 10:14:38,215 - DEBUG - [#FF47]  C: <MAGIC> 0x6060B017
+2025-04-01 10:14:38,215 - DEBUG - [#FF47]  C: <HANDSHAKE> 0x000001FF 0x00080805 0x00020404 0x00000003
+2025-04-01 10:14:38,233 - DEBUG - [#FF47]  S: <HANDSHAKE> 0x00000404
+2025-04-01 10:14:38,233 - DEBUG - [#FF47]  C: HELLO {'user_agent': 'neo4j-python/5.28.0 Python/3.9.21-final-0 (win32)', 'patch_bolt': ['utc'], 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+2025-04-01 10:14:38,233 - DEBUG - [#FF47]  _: <CONNECTION> client state: CONNECTED > READY
+2025-04-01 10:14:38,253 - DEBUG - [#FF47]  S: SUCCESS {'server': 'Neo4j/4.4.40', 'connection_id': 'bolt-238', 'hints': {}, 'patch_bolt': ['utc']}
+2025-04-01 10:14:38,253 - DEBUG - [#FF47]  _: <CONNECTION> server state: CONNECTED > READY
+2025-04-01 10:14:38,253 - DEBUG - [#FF47]  C: RUN "\n        MATCH (a:`高校人员`)\n        WHERE a.unit = '清华大学' AND a.section = '计算机科学与技术系' and a.coreValue > 5\n        return \n            id(a) as id, \n            a.name AS name, \n            a.unit as unit, \n            a.section as section,\n            a.post as post,\n            a.weight as weight,\n            a.coreValue as coreValue,\n            a.communityId as communityId\n    " {} {}
+2025-04-01 10:14:38,255 - DEBUG - [#FF47]  _: <CONNECTION> client state: READY > STREAMING
+2025-04-01 10:14:38,255 - DEBUG - [#FF47]  C: PULL {'n': 1000}
+2025-04-01 10:14:38,278 - DEBUG - [#FF47]  S: SUCCESS {'t_first': 0, 'fields': ['id', 'name', 'unit', 'section', 'post', 'weight', 'coreValue', 'communityId']}
+2025-04-01 10:14:38,278 - DEBUG - [#FF47]  _: <CONNECTION> server state: READY > STREAMING
+2025-04-01 10:14:38,278 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,278 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,278 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,278 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,278 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,278 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,280 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,280 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,280 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,280 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,280 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,280 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,280 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,280 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,280 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,280 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,280 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,282 - DEBUG - [#FF47]  S: SUCCESS {'bookmark': 'FB:kcwQ/UH6SpVwSpa9fGdaZz/l58kU8JA=', 'type': 'r', 't_last': 5, 'db': 'neo4j'}
+2025-04-01 10:14:38,282 - DEBUG - [#FF47]  _: <CONNECTION> server state: STREAMING > READY
+2025-04-01 10:14:38,282 - DEBUG - [#FF47]  _: <POOL> released bolt-238
+2025-04-01 10:14:38,282 - INFO - 查询合著关系: 
+        MATCH (n:`高校人员`)-[r]-(m:`高校人员`)
+        WHERE n.unit = '清华大学' AND n.section = '计算机科学与技术系' and n.coreValue > 5
+        and m.unit = '清华大学' AND m.section = '计算机科学与技术系' and m.coreValue > 5
+        return 
+            id(n) as source, 
+            type(r) AS type,
+            id(m) AS target
+    
+2025-04-01 10:14:38,282 - DEBUG - [#0000]  _: <WORKSPACE> routing towards fixed database: None
+2025-04-01 10:14:38,282 - DEBUG - [#0000]  _: <WORKSPACE> pinning database: None
+2025-04-01 10:14:38,282 - DEBUG - [#0000]  _: <POOL> acquire direct connection, access_mode='WRITE', database=AcquisitionDatabase(name=None, guessed=False)
+2025-04-01 10:14:38,282 - DEBUG - [#FF47]  _: <POOL> picked existing connection bolt-238
+2025-04-01 10:14:38,282 - DEBUG - [#FF47]  _: <POOL> checked re_auth auth=None updated=False force=False
+2025-04-01 10:14:38,282 - DEBUG - [#FF47]  _: <POOL> handing out existing connection
+2025-04-01 10:14:38,282 - DEBUG - [#FF47]  C: RUN "\n        MATCH (n:`高校人员`)-[r]-(m:`高校人员`)\n        WHERE n.unit = '清华大学' AND n.section = '计算机科学与技术系' and n.coreValue > 5\n        and m.unit = '清华大学' AND m.section = '计算机科学与技术系' and m.coreValue > 5\n        return \n            id(n) as source, \n            type(r) AS type,\n            id(m) AS target\n    " {} {}
+2025-04-01 10:14:38,282 - DEBUG - [#FF47]  C: PULL {'n': 1000}
+2025-04-01 10:14:38,306 - DEBUG - [#FF47]  S: SUCCESS {'t_first': 0, 'fields': ['source', 'type', 'target']}
+2025-04-01 10:14:38,306 - DEBUG - [#FF47]  _: <CONNECTION> server state: READY > STREAMING
+2025-04-01 10:14:38,306 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,306 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,306 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,306 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,306 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,306 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,308 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,308 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,308 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,308 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,308 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,308 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,308 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,308 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,308 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,308 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,308 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,308 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,308 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,310 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,310 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,310 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,310 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,310 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,310 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,310 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,310 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,310 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,310 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,310 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,310 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,310 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,310 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,310 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,312 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,312 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,312 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,312 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,312 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,312 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,312 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,312 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,312 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,312 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,312 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,312 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,312 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,312 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,312 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,314 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,314 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,314 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,314 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,314 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,314 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,314 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,314 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,314 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,314 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,314 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,314 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,314 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,314 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,316 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,316 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,316 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,316 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,316 - DEBUG - [#FF47]  S: RECORD * 1
+2025-04-01 10:14:38,316 - DEBUG - [#FF47]  S: SUCCESS {'bookmark': 'FB:kcwQ/UH6SpVwSpa9fGdaZz/l58kU8JA=', 'type': 'r', 't_last': 4, 'db': 'neo4j'}
+2025-04-01 10:14:38,316 - DEBUG - [#FF47]  _: <CONNECTION> server state: STREAMING > READY
+2025-04-01 10:14:38,316 - DEBUG - [#FF47]  _: <POOL> released bolt-238
+2025-04-01 10:14:38,316 - DEBUG - [#0000]  _: <POOL> close
+2025-04-01 10:14:38,316 - DEBUG - [#FF47]  C: GOODBYE
+2025-04-01 10:14:38,316 - DEBUG - [#FF47]  C: <CLOSE>
+2025-04-01 10:14:38,316 - INFO - 高校节点生成
+2025-04-01 10:14:38,318 - INFO - 高校合著关系生成
+2025-04-01 10:14:38,328 - INFO - 加载主应用布局
+2025-04-01 10:14:38,328 - INFO - 启动 Dash 应用
+2025-04-01 10:14:38,332 - INFO - Dash is running on http://127.0.0.1:8050/
+
+2025-04-01 10:14:40,060 - INFO - 初始化 Dash 应用
+2025-04-01 10:14:40,069 - INFO - 加载主页布局
+2025-04-01 10:14:40,073 - INFO - 加载用户登录界面
+2025-04-01 10:14:40,075 - INFO - 加载用户注册表单
+2025-04-01 10:14:40,075 - INFO - 加载用户注册页
+2025-04-01 10:14:41,171 - DEBUG - [#0000]  _: <POOL> created, direct address IPv4Address(('101.132.47.200', 7687))
+2025-04-01 10:14:41,171 - INFO - 查询高校节点: 
+        MATCH (a:`高校人员`)
+        WHERE a.unit = '清华大学' AND a.section = '计算机科学与技术系' and a.coreValue > 5
+        return 
+            id(a) as id, 
+            a.name AS name, 
+            a.unit as unit, 
+            a.section as section,
+            a.post as post,
+            a.weight as weight,
+            a.coreValue as coreValue,
+            a.communityId as communityId
+    
+2025-04-01 10:14:41,171 - DEBUG - [#0000]  _: <WORKSPACE> routing towards fixed database: None
+2025-04-01 10:14:41,171 - DEBUG - [#0000]  _: <WORKSPACE> pinning database: None
+2025-04-01 10:14:41,171 - DEBUG - [#0000]  _: <POOL> acquire direct connection, access_mode='WRITE', database=AcquisitionDatabase(name=None, guessed=False)
+2025-04-01 10:14:41,171 - DEBUG - [#0000]  _: <POOL> trying to hand out new connection
+2025-04-01 10:14:41,171 - DEBUG - [#0000]  _: <RESOLVE> in: 101.132.47.200:7687
+2025-04-01 10:14:41,171 - DEBUG - [#0000]  _: <RESOLVE> dns resolver out: 101.132.47.200:7687
+2025-04-01 10:14:41,171 - DEBUG - [#0000]  C: <OPEN> 101.132.47.200:7687
+2025-04-01 10:14:41,208 - DEBUG - [#FF4E]  C: <MAGIC> 0x6060B017
+2025-04-01 10:14:41,208 - DEBUG - [#FF4E]  C: <HANDSHAKE> 0x000001FF 0x00080805 0x00020404 0x00000003
+2025-04-01 10:14:41,225 - DEBUG - [#FF4E]  S: <HANDSHAKE> 0x00000404
+2025-04-01 10:14:41,225 - DEBUG - [#FF4E]  C: HELLO {'user_agent': 'neo4j-python/5.28.0 Python/3.9.21-final-0 (win32)', 'patch_bolt': ['utc'], 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+2025-04-01 10:14:41,225 - DEBUG - [#FF4E]  _: <CONNECTION> client state: CONNECTED > READY
+2025-04-01 10:14:41,247 - DEBUG - [#FF4E]  S: SUCCESS {'server': 'Neo4j/4.4.40', 'connection_id': 'bolt-239', 'hints': {}, 'patch_bolt': ['utc']}
+2025-04-01 10:14:41,247 - DEBUG - [#FF4E]  _: <CONNECTION> server state: CONNECTED > READY
+2025-04-01 10:14:41,247 - DEBUG - [#FF4E]  C: RUN "\n        MATCH (a:`高校人员`)\n        WHERE a.unit = '清华大学' AND a.section = '计算机科学与技术系' and a.coreValue > 5\n        return \n            id(a) as id, \n            a.name AS name, \n            a.unit as unit, \n            a.section as section,\n            a.post as post,\n            a.weight as weight,\n            a.coreValue as coreValue,\n            a.communityId as communityId\n    " {} {}
+2025-04-01 10:14:41,247 - DEBUG - [#FF4E]  _: <CONNECTION> client state: READY > STREAMING
+2025-04-01 10:14:41,247 - DEBUG - [#FF4E]  C: PULL {'n': 1000}
+2025-04-01 10:14:41,273 - DEBUG - [#FF4E]  S: SUCCESS {'t_first': 0, 'fields': ['id', 'name', 'unit', 'section', 'post', 'weight', 'coreValue', 'communityId']}
+2025-04-01 10:14:41,273 - DEBUG - [#FF4E]  _: <CONNECTION> server state: READY > STREAMING
+2025-04-01 10:14:41,273 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,273 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,273 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,273 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,275 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,275 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,275 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,275 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,275 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,275 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,275 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,275 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,275 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,275 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,275 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,275 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,277 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,277 - DEBUG - [#FF4E]  S: SUCCESS {'bookmark': 'FB:kcwQ/UH6SpVwSpa9fGdaZz/l58kU8JA=', 'type': 'r', 't_last': 4, 'db': 'neo4j'}
+2025-04-01 10:14:41,277 - DEBUG - [#FF4E]  _: <CONNECTION> server state: STREAMING > READY
+2025-04-01 10:14:41,277 - DEBUG - [#FF4E]  _: <POOL> released bolt-239
+2025-04-01 10:14:41,277 - INFO - 查询合著关系: 
+        MATCH (n:`高校人员`)-[r]-(m:`高校人员`)
+        WHERE n.unit = '清华大学' AND n.section = '计算机科学与技术系' and n.coreValue > 5
+        and m.unit = '清华大学' AND m.section = '计算机科学与技术系' and m.coreValue > 5
+        return 
+            id(n) as source, 
+            type(r) AS type,
+            id(m) AS target
+    
+2025-04-01 10:14:41,277 - DEBUG - [#0000]  _: <WORKSPACE> routing towards fixed database: None
+2025-04-01 10:14:41,277 - DEBUG - [#0000]  _: <WORKSPACE> pinning database: None
+2025-04-01 10:14:41,277 - DEBUG - [#0000]  _: <POOL> acquire direct connection, access_mode='WRITE', database=AcquisitionDatabase(name=None, guessed=False)
+2025-04-01 10:14:41,277 - DEBUG - [#FF4E]  _: <POOL> picked existing connection bolt-239
+2025-04-01 10:14:41,277 - DEBUG - [#FF4E]  _: <POOL> checked re_auth auth=None updated=False force=False
+2025-04-01 10:14:41,277 - DEBUG - [#FF4E]  _: <POOL> handing out existing connection
+2025-04-01 10:14:41,277 - DEBUG - [#FF4E]  C: RUN "\n        MATCH (n:`高校人员`)-[r]-(m:`高校人员`)\n        WHERE n.unit = '清华大学' AND n.section = '计算机科学与技术系' and n.coreValue > 5\n        and m.unit = '清华大学' AND m.section = '计算机科学与技术系' and m.coreValue > 5\n        return \n            id(n) as source, \n            type(r) AS type,\n            id(m) AS target\n    " {} {}
+2025-04-01 10:14:41,277 - DEBUG - [#FF4E]  C: PULL {'n': 1000}
+2025-04-01 10:14:41,301 - DEBUG - [#FF4E]  S: SUCCESS {'t_first': 0, 'fields': ['source', 'type', 'target']}
+2025-04-01 10:14:41,301 - DEBUG - [#FF4E]  _: <CONNECTION> server state: READY > STREAMING
+2025-04-01 10:14:41,301 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,301 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,301 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,301 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,301 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,302 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,302 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,302 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,302 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,302 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,302 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,302 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,302 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,302 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,302 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,302 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,302 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,302 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,302 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,302 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,304 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,304 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,304 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,304 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,304 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,304 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,304 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,304 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,304 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,304 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,304 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,304 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,304 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,304 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,306 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,306 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,306 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,306 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,306 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,306 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,306 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,306 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,306 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,306 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,306 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,306 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,306 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,306 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,306 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,308 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,308 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,308 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,308 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,308 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,308 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,308 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,308 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,308 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,308 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,308 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,308 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,308 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,308 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,308 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,310 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,310 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,310 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,310 - DEBUG - [#FF4E]  S: RECORD * 1
+2025-04-01 10:14:41,310 - DEBUG - [#FF4E]  S: SUCCESS {'bookmark': 'FB:kcwQ/UH6SpVwSpa9fGdaZz/l58kU8JA=', 'type': 'r', 't_last': 4, 'db': 'neo4j'}
+2025-04-01 10:14:41,310 - DEBUG - [#FF4E]  _: <CONNECTION> server state: STREAMING > READY
+2025-04-01 10:14:41,310 - DEBUG - [#FF4E]  _: <POOL> released bolt-239
+2025-04-01 10:14:41,310 - DEBUG - [#0000]  _: <POOL> close
+2025-04-01 10:14:41,310 - DEBUG - [#FF4E]  C: GOODBYE
+2025-04-01 10:14:41,310 - DEBUG - [#FF4E]  C: <CLOSE>
+2025-04-01 10:14:41,310 - INFO - 高校节点生成
+2025-04-01 10:14:41,312 - INFO - 高校合著关系生成
+2025-04-01 10:14:41,324 - INFO - 加载主应用布局
+2025-04-01 10:14:41,324 - INFO - 启动 Dash 应用
+2025-04-01 10:14:41,749 - INFO - 导航栏回调触发，当前路径：/
+2025-04-01 10:14:41,750 - INFO - 用户未登录
+2025-04-01 10:14:42,457 - INFO - 导航栏回调触发，当前路径：/
+2025-04-01 10:14:42,458 - INFO - 用户未登录
+2025-04-01 10:14:42,460 - INFO - 导航栏回调触发，当前路径：/
+2025-04-01 10:14:42,461 - INFO - 用户未登录
+2025-04-01 10:15:11,486 - INFO - 初始化 Dash 应用
+2025-04-01 10:15:11,496 - INFO - 加载主页布局
+2025-04-01 10:15:11,500 - INFO - 加载用户登录界面
+2025-04-01 10:15:11,502 - INFO - 加载用户注册表单
+2025-04-01 10:15:11,502 - INFO - 加载用户注册页
+2025-04-01 10:15:12,581 - DEBUG - [#0000]  _: <POOL> created, direct address IPv4Address(('101.132.47.200', 7687))
+2025-04-01 10:15:12,581 - INFO - 查询高校节点: 
+        MATCH (a:`高校人员`)
+        WHERE a.unit = '清华大学' AND a.section = '计算机科学与技术系' and a.coreValue > 5
+        return 
+            id(a) as id, 
+            a.name AS name, 
+            a.unit as unit, 
+            a.section as section,
+            a.post as post,
+            a.weight as weight,
+            a.coreValue as coreValue,
+            a.communityId as communityId
+    
+2025-04-01 10:15:12,581 - DEBUG - [#0000]  _: <WORKSPACE> routing towards fixed database: None
+2025-04-01 10:15:12,581 - DEBUG - [#0000]  _: <WORKSPACE> pinning database: None
+2025-04-01 10:15:12,581 - DEBUG - [#0000]  _: <POOL> acquire direct connection, access_mode='WRITE', database=AcquisitionDatabase(name=None, guessed=False)
+2025-04-01 10:15:12,581 - DEBUG - [#0000]  _: <POOL> trying to hand out new connection
+2025-04-01 10:15:12,581 - DEBUG - [#0000]  _: <RESOLVE> in: 101.132.47.200:7687
+2025-04-01 10:15:12,581 - DEBUG - [#0000]  _: <RESOLVE> dns resolver out: 101.132.47.200:7687
+2025-04-01 10:15:12,583 - DEBUG - [#0000]  C: <OPEN> 101.132.47.200:7687
+2025-04-01 10:15:12,622 - DEBUG - [#FF8F]  C: <MAGIC> 0x6060B017
+2025-04-01 10:15:12,622 - DEBUG - [#FF8F]  C: <HANDSHAKE> 0x000001FF 0x00080805 0x00020404 0x00000003
+2025-04-01 10:15:12,639 - DEBUG - [#FF8F]  S: <HANDSHAKE> 0x00000404
+2025-04-01 10:15:12,641 - DEBUG - [#FF8F]  C: HELLO {'user_agent': 'neo4j-python/5.28.0 Python/3.9.21-final-0 (win32)', 'patch_bolt': ['utc'], 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+2025-04-01 10:15:12,641 - DEBUG - [#FF8F]  _: <CONNECTION> client state: CONNECTED > READY
+2025-04-01 10:15:12,663 - DEBUG - [#FF8F]  S: SUCCESS {'server': 'Neo4j/4.4.40', 'connection_id': 'bolt-240', 'hints': {}, 'patch_bolt': ['utc']}
+2025-04-01 10:15:12,663 - DEBUG - [#FF8F]  _: <CONNECTION> server state: CONNECTED > READY
+2025-04-01 10:15:12,663 - DEBUG - [#FF8F]  C: RUN "\n        MATCH (a:`高校人员`)\n        WHERE a.unit = '清华大学' AND a.section = '计算机科学与技术系' and a.coreValue > 5\n        return \n            id(a) as id, \n            a.name AS name, \n            a.unit as unit, \n            a.section as section,\n            a.post as post,\n            a.weight as weight,\n            a.coreValue as coreValue,\n            a.communityId as communityId\n    " {} {}
+2025-04-01 10:15:12,663 - DEBUG - [#FF8F]  _: <CONNECTION> client state: READY > STREAMING
+2025-04-01 10:15:12,663 - DEBUG - [#FF8F]  C: PULL {'n': 1000}
+2025-04-01 10:15:12,689 - DEBUG - [#FF8F]  S: SUCCESS {'t_first': 0, 'fields': ['id', 'name', 'unit', 'section', 'post', 'weight', 'coreValue', 'communityId']}
+2025-04-01 10:15:12,689 - DEBUG - [#FF8F]  _: <CONNECTION> server state: READY > STREAMING
+2025-04-01 10:15:12,689 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,691 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,691 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,691 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,691 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,691 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,691 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,691 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,691 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,691 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,691 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,691 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,693 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,693 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,693 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,693 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,693 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,693 - DEBUG - [#FF8F]  S: SUCCESS {'bookmark': 'FB:kcwQ/UH6SpVwSpa9fGdaZz/l58kU8JA=', 'type': 'r', 't_last': 4, 'db': 'neo4j'}
+2025-04-01 10:15:12,693 - DEBUG - [#FF8F]  _: <CONNECTION> server state: STREAMING > READY
+2025-04-01 10:15:12,693 - DEBUG - [#FF8F]  _: <POOL> released bolt-240
+2025-04-01 10:15:12,693 - INFO - 查询合著关系: 
+        MATCH (n:`高校人员`)-[r]-(m:`高校人员`)
+        WHERE n.unit = '清华大学' AND n.section = '计算机科学与技术系' and n.coreValue > 5
+        and m.unit = '清华大学' AND m.section = '计算机科学与技术系' and m.coreValue > 5
+        return 
+            id(n) as source, 
+            type(r) AS type,
+            id(m) AS target
+    
+2025-04-01 10:15:12,693 - DEBUG - [#0000]  _: <WORKSPACE> routing towards fixed database: None
+2025-04-01 10:15:12,693 - DEBUG - [#0000]  _: <WORKSPACE> pinning database: None
+2025-04-01 10:15:12,693 - DEBUG - [#0000]  _: <POOL> acquire direct connection, access_mode='WRITE', database=AcquisitionDatabase(name=None, guessed=False)
+2025-04-01 10:15:12,693 - DEBUG - [#FF8F]  _: <POOL> picked existing connection bolt-240
+2025-04-01 10:15:12,693 - DEBUG - [#FF8F]  _: <POOL> checked re_auth auth=None updated=False force=False
+2025-04-01 10:15:12,693 - DEBUG - [#FF8F]  _: <POOL> handing out existing connection
+2025-04-01 10:15:12,693 - DEBUG - [#FF8F]  C: RUN "\n        MATCH (n:`高校人员`)-[r]-(m:`高校人员`)\n        WHERE n.unit = '清华大学' AND n.section = '计算机科学与技术系' and n.coreValue > 5\n        and m.unit = '清华大学' AND m.section = '计算机科学与技术系' and m.coreValue > 5\n        return \n            id(n) as source, \n            type(r) AS type,\n            id(m) AS target\n    " {} {}
+2025-04-01 10:15:12,695 - DEBUG - [#FF8F]  C: PULL {'n': 1000}
+2025-04-01 10:15:12,718 - DEBUG - [#FF8F]  S: SUCCESS {'t_first': 0, 'fields': ['source', 'type', 'target']}
+2025-04-01 10:15:12,718 - DEBUG - [#FF8F]  _: <CONNECTION> server state: READY > STREAMING
+2025-04-01 10:15:12,718 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,720 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,720 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,720 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,720 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,720 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,720 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,720 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,720 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,720 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,720 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,720 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,720 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,720 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,722 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,722 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,722 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,722 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,722 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,722 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,722 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,722 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,722 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,722 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,722 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,722 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,722 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,722 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,722 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,724 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,724 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,724 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,724 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,724 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,724 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,724 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,724 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,724 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,724 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,724 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,724 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,724 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,724 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,724 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,726 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,726 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,726 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,726 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,726 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,726 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,726 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,726 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,726 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,726 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,726 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,726 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,726 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,726 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,726 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,728 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,728 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,728 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,728 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,728 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,728 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,728 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,728 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,728 - DEBUG - [#FF8F]  S: RECORD * 1
+2025-04-01 10:15:12,728 - DEBUG - [#FF8F]  S: SUCCESS {'bookmark': 'FB:kcwQ/UH6SpVwSpa9fGdaZz/l58kU8JA=', 'type': 'r', 't_last': 4, 'db': 'neo4j'}
+2025-04-01 10:15:12,728 - DEBUG - [#FF8F]  _: <CONNECTION> server state: STREAMING > READY
+2025-04-01 10:15:12,728 - DEBUG - [#FF8F]  _: <POOL> released bolt-240
+2025-04-01 10:15:12,728 - DEBUG - [#0000]  _: <POOL> close
+2025-04-01 10:15:12,728 - DEBUG - [#FF8F]  C: GOODBYE
+2025-04-01 10:15:12,728 - DEBUG - [#FF8F]  C: <CLOSE>
+2025-04-01 10:15:12,730 - INFO - 高校节点生成
+2025-04-01 10:15:12,730 - INFO - 高校合著关系生成
+2025-04-01 10:15:12,742 - INFO - 加载主应用布局
+2025-04-01 10:15:12,742 - INFO - 启动 Dash 应用
+2025-04-01 10:15:13,147 - INFO - 导航栏回调触发，当前路径：/
+2025-04-01 10:15:13,149 - INFO - 用户未登录
+2025-04-01 10:15:14,161 - INFO - 导航栏回调触发，当前路径：/
+2025-04-01 10:15:14,161 - INFO - 用户未登录
+2025-04-01 13:13:32,779 - INFO - 初始化 Dash 应用
+2025-04-01 13:13:32,789 - INFO - 加载主页布局
+2025-04-01 13:13:32,793 - INFO - 加载用户登录界面
+2025-04-01 13:13:32,793 - INFO - 加载用户注册表单
+2025-04-01 13:13:32,795 - INFO - 加载用户注册页
+2025-04-01 13:13:33,874 - DEBUG - [#0000]  _: <POOL> created, direct address IPv4Address(('101.132.47.200', 7687))
+2025-04-01 13:13:33,874 - INFO - 查询高校节点: 
+        MATCH (a:`高校人员`)
+        WHERE a.unit = '清华大学' AND a.section = '计算机科学与技术系' and a.coreValue > 5
+        return 
+            id(a) as id, 
+            a.name AS name, 
+            a.unit as unit, 
+            a.section as section,
+            a.post as post,
+            a.weight as weight,
+            a.coreValue as coreValue,
+            a.communityId as communityId
+    
+2025-04-01 13:13:33,876 - DEBUG - [#0000]  _: <WORKSPACE> routing towards fixed database: None
+2025-04-01 13:13:33,876 - DEBUG - [#0000]  _: <WORKSPACE> pinning database: None
+2025-04-01 13:13:33,876 - DEBUG - [#0000]  _: <POOL> acquire direct connection, access_mode='WRITE', database=AcquisitionDatabase(name=None, guessed=False)
+2025-04-01 13:13:33,876 - DEBUG - [#0000]  _: <POOL> trying to hand out new connection
+2025-04-01 13:13:33,876 - DEBUG - [#0000]  _: <RESOLVE> in: 101.132.47.200:7687
+2025-04-01 13:13:33,876 - DEBUG - [#0000]  _: <RESOLVE> dns resolver out: 101.132.47.200:7687
+2025-04-01 13:13:33,876 - DEBUG - [#0000]  C: <OPEN> 101.132.47.200:7687
+2025-04-01 13:13:33,922 - DEBUG - [#E30B]  C: <MAGIC> 0x6060B017
+2025-04-01 13:13:33,922 - DEBUG - [#E30B]  C: <HANDSHAKE> 0x000001FF 0x00080805 0x00020404 0x00000003
+2025-04-01 13:13:33,939 - DEBUG - [#E30B]  S: <HANDSHAKE> 0x00000404
+2025-04-01 13:13:33,939 - DEBUG - [#E30B]  C: HELLO {'user_agent': 'neo4j-python/5.28.0 Python/3.9.21-final-0 (win32)', 'patch_bolt': ['utc'], 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+2025-04-01 13:13:33,939 - DEBUG - [#E30B]  _: <CONNECTION> client state: CONNECTED > READY
+2025-04-01 13:13:33,957 - DEBUG - [#E30B]  S: SUCCESS {'server': 'Neo4j/4.4.40', 'connection_id': 'bolt-248', 'hints': {}, 'patch_bolt': ['utc']}
+2025-04-01 13:13:33,957 - DEBUG - [#E30B]  _: <CONNECTION> server state: CONNECTED > READY
+2025-04-01 13:13:33,959 - DEBUG - [#E30B]  C: RUN "\n        MATCH (a:`高校人员`)\n        WHERE a.unit = '清华大学' AND a.section = '计算机科学与技术系' and a.coreValue > 5\n        return \n            id(a) as id, \n            a.name AS name, \n            a.unit as unit, \n            a.section as section,\n            a.post as post,\n            a.weight as weight,\n            a.coreValue as coreValue,\n            a.communityId as communityId\n    " {} {}
+2025-04-01 13:13:33,959 - DEBUG - [#E30B]  _: <CONNECTION> client state: READY > STREAMING
+2025-04-01 13:13:33,959 - DEBUG - [#E30B]  C: PULL {'n': 1000}
+2025-04-01 13:13:33,983 - DEBUG - [#E30B]  S: SUCCESS {'t_first': 1, 'fields': ['id', 'name', 'unit', 'section', 'post', 'weight', 'coreValue', 'communityId']}
+2025-04-01 13:13:33,983 - DEBUG - [#E30B]  _: <CONNECTION> server state: READY > STREAMING
+2025-04-01 13:13:33,983 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:33,983 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:33,983 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:33,985 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:33,985 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:33,985 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:33,985 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:33,985 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:33,985 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:33,985 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:33,985 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:33,985 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:33,985 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:33,985 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:33,985 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:33,987 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:33,987 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:33,987 - DEBUG - [#E30B]  S: SUCCESS {'bookmark': 'FB:kcwQ/UH6SpVwSpa9fGdaZz/l58kU8JA=', 'type': 'r', 't_last': 4, 'db': 'neo4j'}
+2025-04-01 13:13:33,987 - DEBUG - [#E30B]  _: <CONNECTION> server state: STREAMING > READY
+2025-04-01 13:13:33,987 - DEBUG - [#E30B]  _: <POOL> released bolt-248
+2025-04-01 13:13:33,987 - INFO - 查询合著关系: 
+        MATCH (n:`高校人员`)-[r]-(m:`高校人员`)
+        WHERE n.unit = '清华大学' AND n.section = '计算机科学与技术系' and n.coreValue > 5
+        and m.unit = '清华大学' AND m.section = '计算机科学与技术系' and m.coreValue > 5
+        return 
+            id(n) as source, 
+            type(r) AS type,
+            id(m) AS target
+    
+2025-04-01 13:13:33,987 - DEBUG - [#0000]  _: <WORKSPACE> routing towards fixed database: None
+2025-04-01 13:13:33,987 - DEBUG - [#0000]  _: <WORKSPACE> pinning database: None
+2025-04-01 13:13:33,987 - DEBUG - [#0000]  _: <POOL> acquire direct connection, access_mode='WRITE', database=AcquisitionDatabase(name=None, guessed=False)
+2025-04-01 13:13:33,987 - DEBUG - [#E30B]  _: <POOL> picked existing connection bolt-248
+2025-04-01 13:13:33,987 - DEBUG - [#E30B]  _: <POOL> checked re_auth auth=None updated=False force=False
+2025-04-01 13:13:33,987 - DEBUG - [#E30B]  _: <POOL> handing out existing connection
+2025-04-01 13:13:33,987 - DEBUG - [#E30B]  C: RUN "\n        MATCH (n:`高校人员`)-[r]-(m:`高校人员`)\n        WHERE n.unit = '清华大学' AND n.section = '计算机科学与技术系' and n.coreValue > 5\n        and m.unit = '清华大学' AND m.section = '计算机科学与技术系' and m.coreValue > 5\n        return \n            id(n) as source, \n            type(r) AS type,\n            id(m) AS target\n    " {} {}
+2025-04-01 13:13:33,987 - DEBUG - [#E30B]  C: PULL {'n': 1000}
+2025-04-01 13:13:34,009 - DEBUG - [#E30B]  S: SUCCESS {'t_first': 0, 'fields': ['source', 'type', 'target']}
+2025-04-01 13:13:34,009 - DEBUG - [#E30B]  _: <CONNECTION> server state: READY > STREAMING
+2025-04-01 13:13:34,009 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,009 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,009 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,009 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,011 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,011 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,011 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,011 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,011 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,011 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,011 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,011 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,011 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,011 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,011 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,011 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,011 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,011 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,011 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,013 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,013 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,013 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,013 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,013 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,013 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,013 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,013 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,013 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,013 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,013 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,013 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,013 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,013 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,015 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,015 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,015 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,015 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,015 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,015 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,015 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,015 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,015 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,015 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,015 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,015 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,015 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,017 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,017 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,017 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,017 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,017 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,017 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,017 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,017 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,017 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,017 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,017 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,017 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,017 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,017 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,017 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,019 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,019 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,019 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,019 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,019 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,019 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,019 - DEBUG - [#E30B]  S: RECORD * 1
+2025-04-01 13:13:34,019 - DEBUG - [#E30B]  S: SUCCESS {'bookmark': 'FB:kcwQ/UH6SpVwSpa9fGdaZz/l58kU8JA=', 'type': 'r', 't_last': 4, 'db': 'neo4j'}
+2025-04-01 13:13:34,019 - DEBUG - [#E30B]  _: <CONNECTION> server state: STREAMING > READY
+2025-04-01 13:13:34,019 - DEBUG - [#E30B]  _: <POOL> released bolt-248
+2025-04-01 13:13:34,019 - DEBUG - [#0000]  _: <POOL> close
+2025-04-01 13:13:34,019 - DEBUG - [#E30B]  C: GOODBYE
+2025-04-01 13:13:34,019 - DEBUG - [#E30B]  C: <CLOSE>
+2025-04-01 13:13:34,021 - INFO - 高校节点生成
+2025-04-01 13:13:34,021 - INFO - 高校合著关系生成
+2025-04-01 13:13:34,032 - INFO - 加载主应用布局
+2025-04-01 13:13:34,032 - INFO - 启动 Dash 应用
+2025-04-01 13:13:34,668 - INFO - 导航栏回调触发，当前路径：/
+2025-04-01 13:13:34,670 - INFO - 用户未登录
+2025-04-01 13:13:39,517 - INFO - 导航栏回调触发，当前路径：/
+2025-04-01 13:13:39,517 - INFO - 用户未登录

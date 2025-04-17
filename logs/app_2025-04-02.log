@@ -1,0 +1,320 @@
+2025-04-02 15:47:56,740 - INFO - 初始化 Dash 应用
+2025-04-02 15:47:56,758 - INFO - 加载主页布局
+2025-04-02 15:47:56,769 - INFO - 加载用户登录界面
+2025-04-02 15:47:56,777 - INFO - 加载用户注册表单
+2025-04-02 15:47:56,779 - INFO - 加载用户注册页
+2025-04-02 15:47:59,161 - DEBUG - [#0000]  _: <POOL> created, direct address IPv4Address(('101.132.47.200', 7687))
+2025-04-02 15:47:59,162 - INFO - 查询高校节点: 
+        MATCH (a:`高校人员`)
+        WHERE a.unit = '清华大学' AND a.section = '计算机科学与技术系' and a.coreValue > 5
+        return 
+            id(a) as id, 
+            a.name AS name, 
+            a.unit as unit, 
+            a.section as section,
+            a.post as post,
+            a.weight as weight,
+            a.coreValue as coreValue,
+            a.communityId as communityId
+    
+2025-04-02 15:47:59,162 - DEBUG - [#0000]  _: <WORKSPACE> routing towards fixed database: None
+2025-04-02 15:47:59,162 - DEBUG - [#0000]  _: <WORKSPACE> pinning database: None
+2025-04-02 15:47:59,162 - DEBUG - [#0000]  _: <POOL> acquire direct connection, access_mode='WRITE', database=AcquisitionDatabase(name=None, guessed=False)
+2025-04-02 15:47:59,162 - DEBUG - [#0000]  _: <POOL> trying to hand out new connection
+2025-04-02 15:47:59,162 - DEBUG - [#0000]  _: <RESOLVE> in: 101.132.47.200:7687
+2025-04-02 15:47:59,163 - DEBUG - [#0000]  _: <RESOLVE> dns resolver out: 101.132.47.200:7687
+2025-04-02 15:47:59,163 - DEBUG - [#0000]  C: <OPEN> 101.132.47.200:7687
+2025-04-02 15:47:59,196 - DEBUG - [#CDD8]  C: <MAGIC> 0x6060B017
+2025-04-02 15:47:59,196 - DEBUG - [#CDD8]  C: <HANDSHAKE> 0x000001FF 0x00080805 0x00020404 0x00000003
+2025-04-02 15:47:59,214 - DEBUG - [#CDD8]  S: <HANDSHAKE> 0x00000404
+2025-04-02 15:47:59,214 - DEBUG - [#CDD8]  C: HELLO {'user_agent': 'neo4j-python/5.28.0 Python/3.9.21-final-0 (win32)', 'patch_bolt': ['utc'], 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+2025-04-02 15:47:59,214 - DEBUG - [#CDD8]  _: <CONNECTION> client state: CONNECTED > READY
+2025-04-02 15:47:59,234 - DEBUG - [#CDD8]  S: SUCCESS {'server': 'Neo4j/4.4.40', 'connection_id': 'bolt-306', 'hints': {}, 'patch_bolt': ['utc']}
+2025-04-02 15:47:59,234 - DEBUG - [#CDD8]  _: <CONNECTION> server state: CONNECTED > READY
+2025-04-02 15:47:59,234 - DEBUG - [#CDD8]  C: RUN "\n        MATCH (a:`高校人员`)\n        WHERE a.unit = '清华大学' AND a.section = '计算机科学与技术系' and a.coreValue > 5\n        return \n            id(a) as id, \n            a.name AS name, \n            a.unit as unit, \n            a.section as section,\n            a.post as post,\n            a.weight as weight,\n            a.coreValue as coreValue,\n            a.communityId as communityId\n    " {} {}
+2025-04-02 15:47:59,234 - DEBUG - [#CDD8]  _: <CONNECTION> client state: READY > STREAMING
+2025-04-02 15:47:59,234 - DEBUG - [#CDD8]  C: PULL {'n': 1000}
+2025-04-02 15:47:59,257 - DEBUG - [#CDD8]  S: SUCCESS {'t_first': 0, 'fields': ['id', 'name', 'unit', 'section', 'post', 'weight', 'coreValue', 'communityId']}
+2025-04-02 15:47:59,258 - DEBUG - [#CDD8]  _: <CONNECTION> server state: READY > STREAMING
+2025-04-02 15:47:59,258 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,258 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,258 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,258 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,259 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,259 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,259 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,259 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,259 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,259 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,260 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,260 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,260 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,260 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,260 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,260 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,261 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,261 - DEBUG - [#CDD8]  S: SUCCESS {'bookmark': 'FB:kcwQ/UH6SpVwSpa9fGdaZz/l58kU8JA=', 'type': 'r', 't_last': 5, 'db': 'neo4j'}
+2025-04-02 15:47:59,261 - DEBUG - [#CDD8]  _: <CONNECTION> server state: STREAMING > READY
+2025-04-02 15:47:59,261 - DEBUG - [#CDD8]  _: <POOL> released bolt-306
+2025-04-02 15:47:59,261 - INFO - 查询合著关系: 
+        MATCH (n:`高校人员`)-[r]-(m:`高校人员`)
+        WHERE n.unit = '清华大学' AND n.section = '计算机科学与技术系' and n.coreValue > 5
+        and m.unit = '清华大学' AND m.section = '计算机科学与技术系' and m.coreValue > 5
+        return 
+            id(n) as source, 
+            type(r) AS type,
+            id(m) AS target
+    
+2025-04-02 15:47:59,261 - DEBUG - [#0000]  _: <WORKSPACE> routing towards fixed database: None
+2025-04-02 15:47:59,261 - DEBUG - [#0000]  _: <WORKSPACE> pinning database: None
+2025-04-02 15:47:59,261 - DEBUG - [#0000]  _: <POOL> acquire direct connection, access_mode='WRITE', database=AcquisitionDatabase(name=None, guessed=False)
+2025-04-02 15:47:59,261 - DEBUG - [#CDD8]  _: <POOL> picked existing connection bolt-306
+2025-04-02 15:47:59,262 - DEBUG - [#CDD8]  _: <POOL> checked re_auth auth=None updated=False force=False
+2025-04-02 15:47:59,262 - DEBUG - [#CDD8]  _: <POOL> handing out existing connection
+2025-04-02 15:47:59,262 - DEBUG - [#CDD8]  C: RUN "\n        MATCH (n:`高校人员`)-[r]-(m:`高校人员`)\n        WHERE n.unit = '清华大学' AND n.section = '计算机科学与技术系' and n.coreValue > 5\n        and m.unit = '清华大学' AND m.section = '计算机科学与技术系' and m.coreValue > 5\n        return \n            id(n) as source, \n            type(r) AS type,\n            id(m) AS target\n    " {} {}
+2025-04-02 15:47:59,262 - DEBUG - [#CDD8]  C: PULL {'n': 1000}
+2025-04-02 15:47:59,285 - DEBUG - [#CDD8]  S: SUCCESS {'t_first': 0, 'fields': ['source', 'type', 'target']}
+2025-04-02 15:47:59,285 - DEBUG - [#CDD8]  _: <CONNECTION> server state: READY > STREAMING
+2025-04-02 15:47:59,285 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,285 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,285 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,285 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,285 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,286 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,286 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,286 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,286 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,286 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,286 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,286 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,287 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,287 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,287 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,287 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,287 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,287 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,287 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,288 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,288 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,288 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,288 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,288 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,288 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,288 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,288 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,289 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,289 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,289 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,289 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,289 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,289 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,290 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,290 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,290 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,290 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,290 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,290 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,290 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,290 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,291 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,291 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,291 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,291 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,291 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,291 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,291 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,292 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,292 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,292 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,292 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,292 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,292 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,292 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,293 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,293 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,293 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,293 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,293 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,293 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,293 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,294 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,294 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,294 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,294 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,294 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,294 - DEBUG - [#CDD8]  S: RECORD * 1
+2025-04-02 15:47:59,294 - DEBUG - [#CDD8]  S: SUCCESS {'bookmark': 'FB:kcwQ/UH6SpVwSpa9fGdaZz/l58kU8JA=', 'type': 'r', 't_last': 4, 'db': 'neo4j'}
+2025-04-02 15:47:59,294 - DEBUG - [#CDD8]  _: <CONNECTION> server state: STREAMING > READY
+2025-04-02 15:47:59,295 - DEBUG - [#CDD8]  _: <POOL> released bolt-306
+2025-04-02 15:47:59,295 - DEBUG - [#0000]  _: <POOL> close
+2025-04-02 15:47:59,295 - DEBUG - [#CDD8]  C: GOODBYE
+2025-04-02 15:47:59,295 - DEBUG - [#CDD8]  C: <CLOSE>
+2025-04-02 15:47:59,295 - INFO - 高校节点生成
+2025-04-02 15:47:59,296 - INFO - 高校合著关系生成
+2025-04-02 15:47:59,310 - INFO - 加载主应用布局
+2025-04-02 15:47:59,311 - INFO - 启动 Dash 应用
+2025-04-02 15:47:59,314 - INFO - Dash is running on http://127.0.0.1:8050/
+
+2025-04-02 15:48:01,230 - INFO - 初始化 Dash 应用
+2025-04-02 15:48:01,241 - INFO - 加载主页布局
+2025-04-02 15:48:01,244 - INFO - 加载用户登录界面
+2025-04-02 15:48:01,246 - INFO - 加载用户注册表单
+2025-04-02 15:48:01,247 - INFO - 加载用户注册页
+2025-04-02 15:48:02,450 - DEBUG - [#0000]  _: <POOL> created, direct address IPv4Address(('101.132.47.200', 7687))
+2025-04-02 15:48:02,450 - INFO - 查询高校节点: 
+        MATCH (a:`高校人员`)
+        WHERE a.unit = '清华大学' AND a.section = '计算机科学与技术系' and a.coreValue > 5
+        return 
+            id(a) as id, 
+            a.name AS name, 
+            a.unit as unit, 
+            a.section as section,
+            a.post as post,
+            a.weight as weight,
+            a.coreValue as coreValue,
+            a.communityId as communityId
+    
+2025-04-02 15:48:02,450 - DEBUG - [#0000]  _: <WORKSPACE> routing towards fixed database: None
+2025-04-02 15:48:02,450 - DEBUG - [#0000]  _: <WORKSPACE> pinning database: None
+2025-04-02 15:48:02,450 - DEBUG - [#0000]  _: <POOL> acquire direct connection, access_mode='WRITE', database=AcquisitionDatabase(name=None, guessed=False)
+2025-04-02 15:48:02,450 - DEBUG - [#0000]  _: <POOL> trying to hand out new connection
+2025-04-02 15:48:02,450 - DEBUG - [#0000]  _: <RESOLVE> in: 101.132.47.200:7687
+2025-04-02 15:48:02,451 - DEBUG - [#0000]  _: <RESOLVE> dns resolver out: 101.132.47.200:7687
+2025-04-02 15:48:02,451 - DEBUG - [#0000]  C: <OPEN> 101.132.47.200:7687
+2025-04-02 15:48:02,481 - DEBUG - [#CDDF]  C: <MAGIC> 0x6060B017
+2025-04-02 15:48:02,481 - DEBUG - [#CDDF]  C: <HANDSHAKE> 0x000001FF 0x00080805 0x00020404 0x00000003
+2025-04-02 15:48:02,498 - DEBUG - [#CDDF]  S: <HANDSHAKE> 0x00000404
+2025-04-02 15:48:02,499 - DEBUG - [#CDDF]  C: HELLO {'user_agent': 'neo4j-python/5.28.0 Python/3.9.21-final-0 (win32)', 'patch_bolt': ['utc'], 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+2025-04-02 15:48:02,499 - DEBUG - [#CDDF]  _: <CONNECTION> client state: CONNECTED > READY
+2025-04-02 15:48:02,519 - DEBUG - [#CDDF]  S: SUCCESS {'server': 'Neo4j/4.4.40', 'connection_id': 'bolt-307', 'hints': {}, 'patch_bolt': ['utc']}
+2025-04-02 15:48:02,519 - DEBUG - [#CDDF]  _: <CONNECTION> server state: CONNECTED > READY
+2025-04-02 15:48:02,519 - DEBUG - [#CDDF]  C: RUN "\n        MATCH (a:`高校人员`)\n        WHERE a.unit = '清华大学' AND a.section = '计算机科学与技术系' and a.coreValue > 5\n        return \n            id(a) as id, \n            a.name AS name, \n            a.unit as unit, \n            a.section as section,\n            a.post as post,\n            a.weight as weight,\n            a.coreValue as coreValue,\n            a.communityId as communityId\n    " {} {}
+2025-04-02 15:48:02,519 - DEBUG - [#CDDF]  _: <CONNECTION> client state: READY > STREAMING
+2025-04-02 15:48:02,519 - DEBUG - [#CDDF]  C: PULL {'n': 1000}
+2025-04-02 15:48:02,542 - DEBUG - [#CDDF]  S: SUCCESS {'t_first': 0, 'fields': ['id', 'name', 'unit', 'section', 'post', 'weight', 'coreValue', 'communityId']}
+2025-04-02 15:48:02,542 - DEBUG - [#CDDF]  _: <CONNECTION> server state: READY > STREAMING
+2025-04-02 15:48:02,542 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,542 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,542 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,544 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,544 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,544 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,544 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,544 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,545 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,545 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,545 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,545 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,545 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,545 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,546 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,546 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,546 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,546 - DEBUG - [#CDDF]  S: SUCCESS {'bookmark': 'FB:kcwQ/UH6SpVwSpa9fGdaZz/l58kU8JA=', 'type': 'r', 't_last': 4, 'db': 'neo4j'}
+2025-04-02 15:48:02,546 - DEBUG - [#CDDF]  _: <CONNECTION> server state: STREAMING > READY
+2025-04-02 15:48:02,546 - DEBUG - [#CDDF]  _: <POOL> released bolt-307
+2025-04-02 15:48:02,546 - INFO - 查询合著关系: 
+        MATCH (n:`高校人员`)-[r]-(m:`高校人员`)
+        WHERE n.unit = '清华大学' AND n.section = '计算机科学与技术系' and n.coreValue > 5
+        and m.unit = '清华大学' AND m.section = '计算机科学与技术系' and m.coreValue > 5
+        return 
+            id(n) as source, 
+            type(r) AS type,
+            id(m) AS target
+    
+2025-04-02 15:48:02,547 - DEBUG - [#0000]  _: <WORKSPACE> routing towards fixed database: None
+2025-04-02 15:48:02,547 - DEBUG - [#0000]  _: <WORKSPACE> pinning database: None
+2025-04-02 15:48:02,547 - DEBUG - [#0000]  _: <POOL> acquire direct connection, access_mode='WRITE', database=AcquisitionDatabase(name=None, guessed=False)
+2025-04-02 15:48:02,547 - DEBUG - [#CDDF]  _: <POOL> picked existing connection bolt-307
+2025-04-02 15:48:02,547 - DEBUG - [#CDDF]  _: <POOL> checked re_auth auth=None updated=False force=False
+2025-04-02 15:48:02,547 - DEBUG - [#CDDF]  _: <POOL> handing out existing connection
+2025-04-02 15:48:02,547 - DEBUG - [#CDDF]  C: RUN "\n        MATCH (n:`高校人员`)-[r]-(m:`高校人员`)\n        WHERE n.unit = '清华大学' AND n.section = '计算机科学与技术系' and n.coreValue > 5\n        and m.unit = '清华大学' AND m.section = '计算机科学与技术系' and m.coreValue > 5\n        return \n            id(n) as source, \n            type(r) AS type,\n            id(m) AS target\n    " {} {}
+2025-04-02 15:48:02,547 - DEBUG - [#CDDF]  C: PULL {'n': 1000}
+2025-04-02 15:48:02,569 - DEBUG - [#CDDF]  S: SUCCESS {'t_first': 1, 'fields': ['source', 'type', 'target']}
+2025-04-02 15:48:02,569 - DEBUG - [#CDDF]  _: <CONNECTION> server state: READY > STREAMING
+2025-04-02 15:48:02,570 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,570 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,570 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,570 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,570 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,570 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,570 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,571 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,571 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,571 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,571 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,571 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,571 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,571 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,572 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,572 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,572 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,572 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,572 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,572 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,572 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,573 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,573 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,573 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,573 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,573 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,573 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,573 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,574 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,574 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,574 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,574 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,574 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,574 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,574 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,574 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,575 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,575 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,575 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,576 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,576 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,576 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,576 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,576 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,576 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,576 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,577 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,577 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,577 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,577 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,577 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,577 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,577 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,578 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,578 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,578 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,578 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,578 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,578 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,578 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,579 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,579 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,579 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,579 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,579 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,579 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,579 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,579 - DEBUG - [#CDDF]  S: RECORD * 1
+2025-04-02 15:48:02,580 - DEBUG - [#CDDF]  S: SUCCESS {'bookmark': 'FB:kcwQ/UH6SpVwSpa9fGdaZz/l58kU8JA=', 'type': 'r', 't_last': 3, 'db': 'neo4j'}
+2025-04-02 15:48:02,580 - DEBUG - [#CDDF]  _: <CONNECTION> server state: STREAMING > READY
+2025-04-02 15:48:02,580 - DEBUG - [#CDDF]  _: <POOL> released bolt-307
+2025-04-02 15:48:02,580 - DEBUG - [#0000]  _: <POOL> close
+2025-04-02 15:48:02,580 - DEBUG - [#CDDF]  C: GOODBYE
+2025-04-02 15:48:02,580 - DEBUG - [#CDDF]  C: <CLOSE>
+2025-04-02 15:48:02,581 - INFO - 高校节点生成
+2025-04-02 15:48:02,582 - INFO - 高校合著关系生成
+2025-04-02 15:48:02,597 - INFO - 加载主应用布局
+2025-04-02 15:48:02,597 - INFO - 启动 Dash 应用
+2025-04-02 15:48:03,209 - INFO - 导航栏回调触发，当前路径：/
+2025-04-02 15:48:03,209 - INFO - 用户未登录
+2025-04-02 15:48:08,744 - INFO - 导航栏回调触发，当前路径：/login
+2025-04-02 15:48:08,745 - INFO - 用户未登录
+2025-04-02 15:48:08,777 - INFO - 微信登陆回调触发
+2025-04-02 15:48:08,780 - INFO - 密码显示隐藏回调触发
+2025-04-02 15:48:10,707 - INFO - 微信登陆回调触发
+2025-04-02 15:48:10,707 - INFO - 跳转微信授权页 https://open.weixin.qq.com/connect/qrconnect?appid=wx5834f6db216aa61b&redirect_uri=https%3A%2F%2Fwww.qiuchengtong.cn%2Fwechat%2Fcallback&response_type=code&scope=snsapi_login&state=4758d0c3-8bc7-463a-9da4-05bd2800195e#wechat_redirect

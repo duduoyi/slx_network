@@ -1,27 +1,22 @@
 import dash
 from dash import html
 import dash_bootstrap_components as dbc
-from utils import encode_images
+import logging
 
 
-dash.register_page(__name__, path="/home")  # 使用 `dash.pages`
+logger = logging.getLogger(__name__)
 
 
-# 获取所有编码后的图片
-encoded_logos = encode_images.encode_images_from_assets()
+dash.register_page(__name__, path='/')
 
 
 # 主页
+logger.info("加载主页布局")
 layout = html.Div([
-    # 引入 Google Fonts
-    html.Link(
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400;700&display=swap",
-        rel="stylesheet",
-    ),
     dbc.Card(
         [
             dbc.CardImg(
-                src=f"data:image/png;base64,{encoded_logos['background.png']}",
+                src=dash.get_asset_url('images/background.png'),
                 top=True,
                 style={
                     "opacity": 0.3,  # 调整背景图片透明度
@@ -79,81 +74,5 @@ layout = html.Div([
             "overflow": "hidden",  # 隐藏溢出内容
             "border": "none",  # 去掉黑色细边框
         },
-    ),
-    dbc.Container(
-        children=[
-            html.H4(
-                "拥有127所双一流高校专利成果数据",
-                className="text-center",
-                style={
-                    "fontFamily": "'Poppins', sans-serif",  # 使用 Poppins 字体
-                    "fontSize": "2.5rem",  # 增加字体大小
-                    "fontWeight": "600",  # 设置字体粗细
-                    "color": "#003366",  # 主标题颜色（深蓝色）
-                    "marginBottom": "3rem",  # 增大底部边距以提供更好的间距
-                }
-            ),  # 标题
-            dbc.Row(
-                [
-                    dbc.Col(html.Img(src=f"data:image/png;base64,{encoded_logos['北京大学-logo-512px.png']}",
-                                     height="100px", className="mx-auto d-block"), md=2, style={"padding": "15px"}),
-                    # 增加内边距
-                    dbc.Col(html.Img(src=f"data:image/png;base64,{encoded_logos['山东大学-logo-512px.png']}",
-                                     height="100px", className="mx-auto d-block"), md=2, style={"padding": "15px"}),
-                    dbc.Col(html.Img(src=f"data:image/png;base64,{encoded_logos['上海交通大学-logo-512px.png']}",
-                                     height="100px", className="mx-auto d-block"), md=2, style={"padding": "15px"}),
-                    dbc.Col(html.Img(src=f"data:image/png;base64,{encoded_logos['湖南大学-logo-512px.png']}",
-                                     height="100px", className="mx-auto d-block"), md=2, style={"padding": "15px"}),
-                    dbc.Col(html.Img(src=f"data:image/png;base64,{encoded_logos['四川大学-logo-512px.png']}",
-                                     height="100px", className="mx-auto d-block"), md=2, style={"padding": "15px"}),
-                    dbc.Col(html.Img(src=f"data:image/png;base64,{encoded_logos['复旦大学-logo-512px.png']}",
-                                     height="100px", className="mx-auto d-block"), md=2, style={"padding": "15px"}),
-                ],
-                justify="center",  # 居中对齐
-                className="mb-4",  # 设置行间距（通过添加底部边距）
-                style={"maxWidth": "100%"}  # 确保行不超过容器宽度
-            ),
-            dbc.Row(
-                [
-                    dbc.Col(html.Img(src=f"data:image/png;base64,{encoded_logos['清华大学-logo-512px.png']}",
-                                     height="100px", className="mx-auto d-block"), md=2, style={"padding": "15px"}),
-                    dbc.Col(html.Img(src=f"data:image/png;base64,{encoded_logos['南开大学-logo-512px.png']}",
-                                     height="100px", className="mx-auto d-block"), md=2, style={"padding": "15px"}),
-                    dbc.Col(html.Img(src=f"data:image/png;base64,{encoded_logos['厦门大学-logo-512px.png']}",
-                                     height="100px", className="mx-auto d-block"), md=2, style={"padding": "15px"}),
-                    dbc.Col(html.Img(src=f"data:image/png;base64,{encoded_logos['南京大学-logo-512px.png']}",
-                                     height="100px", className="mx-auto d-block"), md=2, style={"padding": "15px"}),
-                    dbc.Col(html.Img(src=f"data:image/png;base64,{encoded_logos['东南大学-logo-512px.png']}",
-                                     height="100px", className="mx-auto d-block"), md=2, style={"padding": "15px"}),
-                    dbc.Col(html.Img(src=f"data:image/png;base64,{encoded_logos['武汉大学-logo-512px.png']}",
-                                     height="100px", className="mx-auto d-block"), md=2, style={"padding": "15px"}),
-                ],
-                justify="center",  # 居中对齐
-                className="mb-4",  # 设置行间距（通过添加底部边距）
-                style={"maxWidth": "100%"}
-            ),
-            dbc.Row(
-                [
-                    dbc.Col(html.Img(src=f"data:image/png;base64,{encoded_logos['同济大学-logo-512px.png']}",
-                                     height="100px", className="mx-auto d-block"), md=2, style={"padding": "15px"}),
-                    dbc.Col(html.Img(src=f"data:image/png;base64,{encoded_logos['北京航空航天大学-logo-512px.png']}",
-                                     height="100px", className="mx-auto d-block"), md=2, style={"padding": "15px"}),
-                    dbc.Col(html.Img(src=f"data:image/png;base64,{encoded_logos['西北工业大学-logo-512px.png']}",
-                                     height="100px", className="mx-auto d-block"), md=2, style={"padding": "15px"}),
-                    dbc.Col(html.Img(src=f"data:image/png;base64,{encoded_logos['中国科学技术大学-logo-512px.png']}",
-                                     height="100px", className="mx-auto d-block"), md=2, style={"padding": "15px"}),
-                    dbc.Col(html.Img(src=f"data:image/png;base64,{encoded_logos['浙江大学-logo-512px.png']}",
-                                     height="100px", className="mx-auto d-block"), md=2, style={"padding": "15px"}),
-                    dbc.Col(html.Img(src=f"data:image/png;base64,{encoded_logos['哈尔滨工业大学-logo-512px.png']}",
-                                     height="100px", className="mx-auto d-block"), md=2, style={"padding": "15px"}),
-                ],
-                justify="center",  # 居中对齐
-                className="mb-4",  # 设置行间距（通过添加底部边距）
-                style={"maxWidth": "100%"}
-            ),
-        ],
-        fluid=True,  # 让容器在不同屏幕尺寸下流式布局
-        style={"height": "100vh", "display": "flex", "flexDirection": "column", "justifyContent": "center",
-               "alignItems": "center"},  # 页面居中显示
     ),
 ])

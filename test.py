@@ -1,0 +1,6 @@
+import jwt
+
+share_auth_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJTb2NpYWxuZXQiLCJpYXQiOjE3NDM2NTA4NTcsImV4cCI6MTc0NDI1NTY1Nywib3BlbmlkIjoibzV3M1A2eVgxeW1BU0hMQ0lnMGYycjlmT0dmQSJ9.hGzPFoHMEMeAt5FwhHxjxgNUCZx9UaJ74Mc_Qk17EPI'
+decoded_token = jwt.decode(share_auth_token, 'SLX_generateJWT', algorithms=["HS256"])
+
+print(decoded_token)
