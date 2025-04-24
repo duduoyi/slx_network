@@ -2,12 +2,12 @@ import dash
 import dash_bootstrap_components as dbc
 from dash import html, dcc, Input, Output
 from dash.exceptions import PreventUpdate
-from flask_server import flask_server
+from flask_server import flask_server, my_keycloak
 from flask_login import current_user
 import logging
 from datetime import datetime
 import os
-
+from config import Config
 
 # ====================== 🏠 配置日志 ======================
 # 定义日志存放路径
@@ -116,8 +116,8 @@ def navbar_change(pathname):
         return (
             html.Div([
                 dbc.Nav([
-                    dbc.NavItem(dbc.NavLink("项目管理", href="https://www.qiuchengtong.cn/kanboard")),
-                    dbc.NavItem(dbc.NavLink("活动论坛", href="https://www.qiuchengtong.cn/nodebb")),
+                    dbc.NavItem(dbc.NavLink("项目管理", href="https://www.qiuchengtong.cn/kanboard/?controller=OAuthController&action=handler&plugin=OAuth2")),
+                    dbc.NavItem(dbc.NavLink("活动论坛", href="https://www.qiuchengtong.cn/nodebb/auth/keycloak")),
                 ], className="ml-auto", navbar=True)
             ]),
             html.Div([
@@ -131,7 +131,25 @@ def navbar_change(pathname):
             ])
         )
     logger.info(f'用户未登录')
-    return html.Div(), html.Div([dbc.Button("登录", id="navbar-login-btn", href="/login", color="primary")])
+    return html.Div(), html.Div([dbc.Button("登录", id="navbar-login-btn", color="primary")])
+
+
+# keycloak 登陆回调
+@dash.callback(
+    Output('url', 'href'),
+    Input('navbar-login-btn', 'n_clicks'),
+    prevent_initial_call=True,
+)
+def keycloak_login(n_clicks):
+    logger.info("keycloak登陆回调触发")
+    if n_clicks is not None:
+        auth_url = my_keycloak.auth_url(
+            redirect_uri=Config.KEYCLOAK_REDIRECT_URI,
+            scope="openid"
+        )
+        logger.info(f"获取keycloak授权url：{auth_url}")
+        return auth_url
+    return None
 
 
 # 登出回调

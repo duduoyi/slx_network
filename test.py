@@ -1,6 +1,42 @@
-import jwt
+from datetime import timedelta
 
-share_auth_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJTb2NpYWxuZXQiLCJpYXQiOjE3NDM2NTA4NTcsImV4cCI6MTc0NDI1NTY1Nywib3BlbmlkIjoibzV3M1A2eVgxeW1BU0hMQ0lnMGYycjlmT0dmQSJ9.hGzPFoHMEMeAt5FwhHxjxgNUCZx9UaJ74Mc_Qk17EPI'
-decoded_token = jwt.decode(share_auth_token, 'SLX_generateJWT', algorithms=["HS256"])
+from flask import Flask, session, g
 
-print(decoded_token)
+# local imports
+from dash_flask_keycloak import FlaskKeycloak
+
+# Setup server.
+server = Flask(__name__)
+
+KEYCLOAK_HOST = 'https://keycloak.qiuchengtong.cn:8445'
+CLIENT_ID = 'dash-cilent'
+REALM_NAME = 'test'
+CLIENT_SECRET_KEY = 'tg8HCo2mxWtBWR4Er0fxBHNjbbsOiCGl'
+KEYCLOAK_PYTHON_CERT = False
+APP_PORT = 8050
+
+conf = dict(server_url=KEYCLOAK_HOST,
+            client_id=CLIENT_ID,
+            realm_name=REALM_NAME,
+            client_secret_key=CLIENT_SECRET_KEY,
+            verify=KEYCLOAK_PYTHON_CERT)
+
+FlaskKeycloak.build(
+    server,
+    config_data=conf,
+    redirect_uri=f"http://127.0.0.1:{APP_PORT}",
+    session_lifetime=timedelta(hours=12)
+)
+
+
+@server.route("/keycloak/callback")
+def root_route():
+    user = session["user"]
+    data = session["data"]
+    return (f"<div>Hello {user} - calling from {g.external_url}</div>"
+            f"<div>{data}</div>"
+            f"<a href='/logout'><button>Logout</button></a>")
+
+
+if __name__ == '__main__':
+    server.run(port=APP_PORT)

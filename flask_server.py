@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect, session, make_response
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user
+from sqlalchemy import or_
 from flask_cors import CORS
 from config import Config
 import requests
@@ -8,12 +9,14 @@ import logging
 import jwt
 from datetime import datetime, timedelta
 import json
+from keycloak.keycloak_openid import KeycloakOpenID
+from dash_flask_keycloak import FlaskKeycloak
 
 
 logger = logging.getLogger(__name__)
 
 
-# ========== 🚀 创建 Flask 应用 ==========
+# ============================ 🚀 创建 Flask 应用 ============================
 # 创建 共享 Flask 服务器
 flask_server = Flask(__name__)
 
@@ -29,11 +32,13 @@ flask_server.config['SESSION_COOKIE_DOMAIN'] = '.qiuchengtong.cn'  # 确保跨�
 # 配置CORS，允许跨域请求并支持携带Cookie
 CORS(flask_server, supports_credentials=True)
 
+# ============================ 配置Flask Login ============================
 # 配置 Flask-Login
 mysqldb = SQLAlchemy(flask_server)
 login_manager = LoginManager()
 login_manager.init_app(flask_server)
 
+# ============================ 配置微信登录 ============================
 # 微信登录配置参数
 APPID = Config.APP_ID  # 替换为你的微信开放平台应用ID
 SCOPE = Config.SCOPE  # 请求的权限范围
@@ -41,38 +46,99 @@ REDIRECT_URI = Config.ENCODED_REDIRECT_URI  # 登录成功后的回调URL
 WECHAT_SECRET = Config.WECHAT_APP_SECRET
 
 
-# 用户模型
+# # ============================ 配置 Keycloak ============================
+my_keycloak = KeycloakOpenID(
+    server_url=Config.KEYCLOAK_HOST,
+    client_id=Config.CLIENT_ID,
+    realm_name=Config.REALM_NAME,
+    client_secret_key=Config.CLIENT_SECRET_KEY
+)
+
+
+# ============================ 配置 sqlalchemy ============================
+# ORM   用户模型
 class User(UserMixin, mysqldb.Model):
     __tablename__ = 'users'  # 假设数据库中有一个名为 'users' 的表
     user_id = mysqldb.Column(mysqldb.Integer, primary_key=True)
-    open_id = mysqldb.Column(mysqldb.String(255), nullable=False)
     username = mysqldb.Column(mysqldb.String(150), unique=True, nullable=False)
+    open_id = mysqldb.Column(mysqldb.String(255), nullable=False)
+    unionid = mysqldb.Column(mysqldb.String(255), nullable=False)
+    email = mysqldb.Column(mysqldb.String(100), nullable=False)
     hash_password = mysqldb.Column(mysqldb.String(255), nullable=False)
     unit = mysqldb.Column(mysqldb.String(100))
     section = mysqldb.Column(mysqldb.String(100))
     user_type = mysqldb.Column(mysqldb.String(50))
     register_type = mysqldb.Column(mysqldb.String(50))
 
-
-    def __init__(self, open_id=None, username=None, hash_password=None, unit=None, section=None, user_type=None, register_type=None):
-        self.open_id = open_id
+    def __init__(self, username=None, open_id=None, unionid=None, email=None, hash_password=None, unit=None, section=None, user_type=None, register_type=None):
         self.username = username
+        self.open_id = open_id
+        self.unionid = unionid
+        self.email = email
         self.hash_password = hash_password
         self.unit = unit
         self.section = section
         self.user_type = user_type
         self.register_type = register_type
 
-
     def get_id(self):
         return str(self.user_id)  # Flask-Login 需要此方法返回用户唯一标识符
 
 
+# ========================== Flask-Login 用户加载函数 ===================================
 # Flask-Login 用户加载函数
 @login_manager.user_loader
 def load_user(user_id):
     logger.info(f"加载用户 ID: {user_id}")
     return User.query.get(int(user_id))
+
+
+# ========================== Flask 路由 ===================================
+@flask_server.route('/keycloak/callback')
+def flask_login():
+    code = request.args.get('code')
+    logger.info(f"获取keycloak code：{code}")
+    token_response = my_keycloak.token(
+        grant_type="authorization_code",
+        code=code,
+        redirect_uri=Config.KEYCLOAK_REDIRECT_URI
+    )
+    logger.info(f"获取keycloak token：{code}")
+    userinfo = my_keycloak.userinfo(token_response['access_token'])
+    logger.info(f"获取keycloak userinfo：{userinfo}")
+    # 解析用户信息
+    # user = json.loads(userinfo)
+    username = userinfo['preferred_username']
+    email = userinfo['email']
+    unionid = userinfo['sub']
+
+    # 根据用户名查询数据库
+    # 判断用户是否存在
+    user = User.query.filter(or_(User.unionid == unionid, User.email == email)).first()
+    logger.info(f'判断微信用户是否存在: {user}')
+
+    if not user:
+        logger.info("keycloak用户不存在，生成新用户对象")
+        new_user = User(
+            username=username,
+            email=email,
+            unionid=unionid,
+            register_type='keycloak'
+        )
+        try:
+            logger.info("注册keycloak用户: ", username)
+            mysqldb.session.add(new_user)
+            mysqldb.session.commit()
+            logger.info(f"新用户已注册：{username}")
+        except Exception as db_error:
+            logger.error(f"MySQL数据库错误: {db_error}")
+            return 'MySQL数据库错误', 500
+    else:
+        # 使用 Flask-Login 登录用户
+        login_user(user, remember=True)  # 登录用户（此时 user 是 User 模型的实例）, 使用remember参数来设置记住我功能
+        logger.info(f'keycloak用户登录成功 {current_user.is_authenticated}')
+
+    return redirect("/")
 
 
 @flask_server.route('/wechat/callback')
@@ -151,10 +217,10 @@ def wechat_callback():
                 "iss": "Socialnet",
                 "iat": datetime.utcnow(),
                 "exp": datetime.utcnow() + timedelta(days=7),  # 7 天有效期
-                "id": openid,
+                "external_id": "dash_wechat_uid_" + str(unionid),
                 "username": username,
                 "headimgurl": headimgurl,
-                "unionid": unionid,
+                "openid": openid,
             }
             jwt_token = jwt.encode(payload, Config.JWT_SECRET, algorithm='HS256')
             response = make_response(redirect('/'))  # 登录成功后重定向到主页面
