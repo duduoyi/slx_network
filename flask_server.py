@@ -10,7 +10,6 @@ import jwt
 from datetime import datetime, timedelta
 import json
 from keycloak.keycloak_openid import KeycloakOpenID
-from dash_flask_keycloak import FlaskKeycloak
 
 
 logger = logging.getLogger(__name__)
