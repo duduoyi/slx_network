@@ -116,8 +116,8 @@ def navbar_change(pathname):
         return (
             html.Div([
                 dbc.Nav([
-                    dbc.NavItem(dbc.NavLink("项目管理", href="https://www.qiuchengtong.cn/kanboard/?controller=OAuthController&action=handler&plugin=OAuth2")),
-                    dbc.NavItem(dbc.NavLink("活动论坛", href="https://www.qiuchengtong.cn/nodebb/auth/keycloak")),
+                    dbc.NavItem(dbc.NavLink("项目管理", href="https://www.qiuchengtong.cn/kanboard/?controller=OAuthController&action=handler&plugin=OAuth2", target="_blank"),),
+                    dbc.NavItem(dbc.NavLink("活动论坛", href="https://www.qiuchengtong.cn/nodebb/auth/keycloak", target="_blank")),
                 ], className="ml-auto", navbar=True)
             ]),
             html.Div([
