@@ -6,6 +6,8 @@ from flask_cors import CORS
 from config import Config
 import logging
 from keycloak.keycloak_openid import KeycloakOpenID
+import os
+import time
 # import requests
 # import jwt
 # from datetime import datetime, timedelta
@@ -14,17 +16,22 @@ from keycloak.keycloak_openid import KeycloakOpenID
 logger = logging.getLogger(__name__)
 
 
+# 设置Unix环境变量, windows开发注释
+os.environ['TZ'] = 'Asia/Shanghai'
+time.tzset()
+
 # ============================ 🚀 创建 Flask 应用 ============================
 # 创建 共享 Flask 服务器
 flask_server = Flask(__name__)
 
 # 确保 Secret Key 正确设置，用于加密 session
-flask_server.config['SECRET_KEY'] = Config.FLASK_SECRET_KEY
 flask_server.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{Config.MYSQL_USER}:{Config.MYSQL_PASSWORD}@{Config.MYSQL_HOST}:{Config.MYSQL_PORT}/{Config.MYSQL_DB_WEB}"
 flask_server.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+flask_server.config['SECRET_KEY'] = Config.FLASK_SECRET_KEY
 flask_server.config['SESSION_COOKIE_SECURE'] = True  # 如果使用 HTTPS，设置为 True
 flask_server.config['SESSION_COOKIE_SAMESITE'] = 'None'  # 允许跨域携带 Cookie
 flask_server.config['SESSION_COOKIE_DOMAIN'] = '.qiuchengtong.cn'  # 确保跨子域可以共享 cookie
+flask_server.config['SESSION_PERMANENT'] = False
 
 
 # 配置CORS，允许跨域请求并支持携带Cookie
@@ -130,7 +137,6 @@ def flask_login():
     logger.info(f"获取keycloak userinfo：{userinfo}")
 
     # 解析用户信息
-    # user = json.loads(userinfo)
     username = userinfo['preferred_username']
     email = userinfo['email']
     unionid = userinfo['sub']
@@ -181,7 +187,23 @@ def flask_logout():
     else:
         logger.error("没有找到有效的 refresh_token")
 
-    return redirect('https://www.qiuchengtong.cn')
+    return redirect("/")
+
+
+@flask_server.route('/keycloak/logout', methods=["GET", "POST"])
+def keycloak_logout():
+    logger.info("keycloak 登出路由触发")
+    # 处理 Keycloak 发来的注销请求
+    logout_token = request.json.get('logout_token')
+    # 根据 logout_token 来验证并执行注销操作
+    # 清理用户会话，销毁 cookie 或 token
+    logger.info(f"Received logout request with token: {logout_token}")
+
+    # 使用 flask-login 的登出方法
+    logout_user()  # 使用flask-login的登出方法
+    logger.info(f"keycloak 登出成功, 当前用户认证: {current_user.is_authenticated}")
+
+    return redirect("/")
 
 
 # @flask_server.route('/wechat/callback')

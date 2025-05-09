@@ -111,27 +111,44 @@ dash_app.layout = html.Div([
 )
 def navbar_change(pathname):
     logger.info(f"导航栏回调触发，当前路径：{pathname}")
-    if current_user.is_authenticated:
-        logger.info(f'用户已登录, 当前用户认证: {current_user.is_authenticated}')
-        return (
-            html.Div([
-                dbc.Nav([
-                    dbc.NavItem(dbc.NavLink("项目管理", href="https://www.qiuchengtong.cn/kanboard/?controller=OAuthController&action=handler&plugin=OAuth2", target="_blank"),),
-                    dbc.NavItem(dbc.NavLink("活动论坛", href="https://www.qiuchengtong.cn/nodebb/auth/keycloak", target="_blank")),
-                ], className="ml-auto", navbar=True)
-            ]),
-            html.Div([
-                dbc.DropdownMenu(
-                    children=[
-                        dbc.DropdownMenuItem("退出登录", id="user-logout-btn"),
-                    ],
-                    label="个人中心",
-                    id="user-menu",
-                )
-            ])
-        )
-    logger.info(f'用户未登录')
-    return html.Div(), html.Div([dbc.Button("登录", id="navbar-login-btn", color="primary")])
+    if pathname == '/logout':
+        logger.info("登出路径，不更新")
+        raise PreventUpdate  # 避免不必要的更新
+
+    if pathname == '/':
+        if current_user.is_authenticated:
+            logger.info(f'用户已登录, 当前用户认证: {current_user.is_authenticated}')
+            return (
+                html.Div([
+                    dbc.Nav([
+                        dbc.NavItem(dbc.NavLink(
+                            "项目管理",
+                            href="https://www.qiuchengtong.cn/kanboard/?controller=OAuthController&action=handler&plugin=OAuth2",
+                            target="_blank")
+                        ),
+                        dbc.NavItem(dbc.NavLink(
+                            "活动论坛",
+                            href="https://www.qiuchengtong.cn/nodebb/auth/keycloak",
+                            target="_blank")
+                        ),
+                    ], className="ml-auto", navbar=True)
+                ]),
+                html.Div([
+                    dbc.Button("退出", id="user-logout-btn", color="primary")
+                ])
+                # html.Div([
+                #     dbc.DropdownMenu(
+                #         children=[
+                #             dbc.DropdownMenuItem("退出登录", id="user-logout-btn"),
+                #         ],
+                #         label="个人中心",
+                #         id="user-menu",
+                #     )
+                # ])
+            )
+        else:
+            logger.info(f'用户未登录')
+            return html.Div(), html.Div([dbc.Button("登录", id="navbar-login-btn", color="primary")])
 
 
 # keycloak 登陆回调
