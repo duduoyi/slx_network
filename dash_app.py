@@ -187,6 +187,6 @@ def dash_logout(n_clicks):
 
 
 # ========== 🚀 开发环境运行应用 ==========
-if __name__ == '__main__':
-    logger.info("启动 Dash 应用")
-    dash_app.run(debug=True)
+# if __name__ == '__main__':
+#     logger.info("启动 Dash 应用")
+#     dash_app.run(debug=True)
