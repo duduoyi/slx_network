@@ -12,7 +12,7 @@ import os
 logger = logging.getLogger(__name__)
 
 
-# # 生产环境：设置Unix环境变量, 开发环境：windows开发注释
+# 生产环境：设置Unix环境变量, 开发环境：windows开发注释
 os.environ['TZ'] = 'Asia/Shanghai'
 time.tzset()
 
